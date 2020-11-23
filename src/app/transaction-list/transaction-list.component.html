@@ -1,0 +1,85 @@
+<div class="mt-md mr-md" fxLayout="row" fxLayout.lt-sm="column" fxFlex="100" fxLayoutAlign="start start">
+  <div class="cs-panel ml-md mb-md" fxLayout="column" fxFlex="30" fxFlex.lt-sm="100">
+    <div fxLayout="row" fxLayoutAlign="center center" class="cs-panel-title mat-h2">
+      <div fxFlex="10">
+        <mat-icon color="accent">compare_arrows</mat-icon>
+      </div>
+      <div fxFlex="90" class="mat-h2"> {{'makeATransfer' | translate}} </div>
+    </div>
+    <div class="cs-panel-content">
+      <app-transfer></app-transfer>
+    </div>
+  </div>
+  <div class="cs-panel ml-md" fxLayout="column" style="width: 498px;" fxFlex="70">
+    <div fxLayout="row" fxLayoutAlign="center center" class="cs-panel-title mat-h2">
+      <div fxFlex="10">
+        <mat-icon color="accent">shop</mat-icon>
+      </div>
+      <div fxFlex="90" class="mat-h2"> {{ 'recentTransactions' | translate}}</div>
+    </div>
+    <div class="cs-panel-content" *ngIf="transactionService.transactionsList$ | async as transactions">
+      <div class="ml-md" fxLayout="row">
+        <div fxLayout="row" fxFlex="100">
+          <div fxFlex="40">
+            <mat-form-field fxFlex="100" appearance="outline">
+              <input cdkFocusInitial matInput type="text" autocomplete="off" placeholder="{{ 'searchByTyping' | translate}}" #searchVal [(ngModel)]="search">
+              <button mat-button *ngIf="search" matSuffix mat-icon-button aria-label="Clear" (click)="search=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field>
+          </div>
+          <div class="ml-md mt-sm" fxFlex="60">
+              <span class="mat-h4">{{'sortBy' | translate}}</span>
+              <mat-button-toggle-group
+                class="ml-md"
+               appearance="legacy"
+                name="sortBy"
+                aria-label="Sort By"
+                (click)="sortOrder = !sortOrder"
+                #orderBy="matButtonToggleGroup"
+                value="date">
+                <mat-button-toggle value="date" (click)="dateASC = !dateASC; nameASC = undefined; amountASC = undefined;">
+                  {{'date' | translate}}
+                  <mat-icon *ngIf="dateASC === true">arrow_upward</mat-icon>
+                  <mat-icon *ngIf="dateASC === false">arrow_downward</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="name" (click)="nameASC = !nameASC; dateASC = undefined; amountASC = undefined;">
+                  {{'beneficiary' | translate}}
+                  <mat-icon *ngIf="nameASC === true">arrow_upward</mat-icon>
+                  <mat-icon *ngIf="nameASC === false">arrow_downward</mat-icon>
+                </mat-button-toggle>
+                <mat-button-toggle value="amount" (click)="amountASC = !amountASC; dateASC = undefined; nameASC = undefined;">
+                  {{'amount' | translate}}
+                  <mat-icon *ngIf="amountASC === true">arrow_upward</mat-icon>
+                  <mat-icon *ngIf="amountASC === false">arrow_downward</mat-icon>
+                </mat-button-toggle>
+              </mat-button-toggle-group>
+          </div>
+        </div>
+      </div>
+      <div class="m-sm cs-border">
+        <div *ngFor="let t of transactions | searchByName : searchVal.value | orderBy : {val: orderBy.value, order: sortOrder}; let i=index;">
+          <div [ngStyle]="{'border-left-color': t.categoryCode}"
+               class="cs-border-left cs-border-bottom p-md"
+               fxLayout="row"
+               fxLayoutAlign="start center">
+            <div fxFlex="10">{{t.dates.valueDate | date: 'mediumDate'}}</div>
+            <div fxLayout="row" fxFlex="70" fxLayoutAlign="start center">
+              <img style="width:40px; height: 40px;" src="./assets/{{ t.merchant.name.split(' ').join('-') | lowercase }}.png"
+                   alt="...">
+              <div class="ml-md">
+                <div class="mat-h3">{{t.merchant.name}}</div>
+                <div class="mat-caption">
+                  {{t.transaction.type}}
+                </div>
+              </div>
+            </div>
+            <div>
+              {{ t.transaction.amountCurrency.amount | currency:'USD':'symbol' }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

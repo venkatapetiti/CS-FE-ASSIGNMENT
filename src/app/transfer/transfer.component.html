@@ -1,0 +1,24 @@
+<form [formGroup]="transferForm" (ngSubmit)="onSubmit(transferForm.value)">
+  <div class="m-sm">
+    <mat-form-field fxFlex="100" appearance="outline">
+      <mat-label>FROM ACCOUNT</mat-label>
+      <input matInput formControlName="fromAccount" required>
+    </mat-form-field>
+  </div>
+  <div class="m-sm">
+    <mat-form-field fxFlex="100" appearance="outline">
+      <mat-label>{{'toAccount' | translate}}</mat-label>
+      <input matInput formControlName="toAccount" required>
+    </mat-form-field>
+  </div>
+  <div class="m-sm">
+    <mat-form-field fxFlex="100" appearance="outline">
+      <mat-label>{{'amount' | translate}}</mat-label>
+      <input matInput type="number" max="700" placeholder="0.00" formControlName="amount" required>
+      <span matPrefix>$&nbsp;</span>
+    </mat-form-field>
+  </div>
+  <div class="m-sm">
+    <button [disabled]="transferForm.invalid" mat-raised-button color="primary" type="submit">{{'submit' | translate}}</button>
+  </div>
+</form>

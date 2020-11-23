@@ -1,0 +1,18 @@
+{
+  "recentTransactions": "Recent Transactions",
+  "makeATransfer": "Make a Transfer",
+  "beneficiary": "BENEFECIARY",
+  "amount": "AMOUNT",
+  "date": "DATE",
+  "sortBy": "Sort By",
+  "searchByTyping": "Search By Typing...",
+  "fromAccount": "FROM ACCOUNT",
+  "toAccount": "TO ACCOUNT",
+  "amount": "AMOUNT",
+  "submit": "SUBMIT",
+  "previewTransfer": "Preview Transfer",
+  "merchantName": "MERCHANT NAME:",
+  "amount:": "AMOUNT:",
+  "cancel": "CANCEL",
+  "transfer": "TRANSFER"
+}

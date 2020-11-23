@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{'previewTransfer' | translate}}</h2>
+<mat-dialog-content class="mat-typography">
+
+    <h3 i18n>{{'merchantName' | translate}} </h3>
+    <p>{{data.merchant.name}}</p>
+
+    <h3 i18n>{{'amount:' | translate}} </h3>
+    <p>{{data.transaction.amountCurrency.amount}}</p>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close i18n>{{'cancel' | translate}}</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="onTransfer();" i18n>{{'transfer' | translate}}</button>
+</mat-dialog-actions>

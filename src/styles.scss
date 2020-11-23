@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+@import 'app-mat-theme';
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-image: url("./assets/background.jpg");
+  position: relative;
+  background-position: center;
+  background-size: cover;
+}
+
+$margin-sm: 16px;
+$margin-md: 32px;
+$margin-lg: 64px;
+
+
+.ml-sm {
+  margin-left: $margin-sm;
+}
+
+.mt-sm {
+  margin-top: $margin-sm;
+}
+
+.mt-md {
+  margin-top: $margin-md;
+}
+
+.mb-md {
+  margin-bottom: $margin-md;
+}
+
+.ml-md {
+  margin-left: $margin-md;
+}
+
+.mr-md {
+  margin-right: $margin-md;
+}
+
+.m-lg {
+  margin: $margin-lg;
+}
+
+.m-sm {
+  margin: $margin-sm;
+}
+
+.m-md {
+  margin: $margin-md;
+}
+
+.p-md {
+  padding: 12px 12px;
+}
+
+.custom-dialog .mat-dialog-container {
+  overflow: hidden;
+  width: 461px;
+}
